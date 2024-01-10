@@ -9,7 +9,14 @@
     <h1 style="text-align: center;">Webboard KakKak</h1>
     <hr>
     <div style="text-align: center;">
-        <?php echo "ต้องการแสดงกระทู้หมายเลข $_GET[id]"?>
+        <?php $n =  $_GET['id']; 
+            echo "ต้องการแสดงกระทู้หมายเลข $_GET[id]<br>";
+        
+            if(($n%2)==0)
+                echo "เป็นกระทู้หมายเลขคู่";
+            else
+                echo "เป็นกระทู้หมายเลขคี่";
+        ?>
       
     </div>    
        <br>
@@ -28,7 +35,7 @@
     
     <br>
     <div  style="text-align: center;">
-        <a href="index.html">กลับไปหน้าหลัก</a>
+        <a href="index.php">กลับไปหน้าหลัก</a>
     </div>
     
     
