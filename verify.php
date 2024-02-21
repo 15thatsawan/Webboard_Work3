@@ -13,36 +13,36 @@
     <title>Verify</title>
 </head>
 <body>
-    <h1 style="text-align: center;">Webboard KakKak</h1>
-    <hr>
-    <div style="text-align: center;">
-       
+    
     <?php
     
         if($_POST['name']=="admin" && $_POST['pass']=="ad1234"){
             $_SESSION["username"]="admin";
             $_SESSION["role"]="a";
             $_SESSION["id"]=session_id();
-            echo "ยินดีต้อนรับคุณ ADMIN";
+            header("location:index.php"); //redirect
+            die();
         }
-            
         elseif($_POST['name']=="member" && $_POST['pass']=="mem1234")
         {
             $_SESSION["username"]="member";
             $_SESSION["role"]="m";
             $_SESSION["id"]=session_id();
-             echo "ยินดีต้อนรับคุณ MEMBER";
+            header("location:index.php"); //redirect
+            die();
+        }
+        else{
+            $_SESSION['error']='error';
+            header("location:login.php");
+            die();
+
         }
            
-        else
-            echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
     
         
     ?>
-    </div>
-    <div  style="text-align: center;">
-        <a href="index.php">กลับไปหน้าหลัก</a>
-    </div>
+   
+   
     
 </body>
 </html>
