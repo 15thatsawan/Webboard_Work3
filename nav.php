@@ -11,12 +11,22 @@
                     <a class="btn btn-outline-secondary btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-lines-fill"></i> <?php echo $_SESSION['username'];?>
                     </a>
+                    <?php if(isset($_SESSION['id']) &&  $_SESSION['role']=='a'){ ?>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="category.php"><i class="bi bi-bookmarks"></i> จัดการหมวดหมูู่</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-check"></i> จัดการผู้ใช้งาน</a></li>
+                        <li><a class="dropdown-item" href="logout.php"><i class="bi bi-power"></i> ออกจากระบบ</a></li>
+                        </ul>
+                    <?php  } ?>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="logout.php"><i class="bi bi-power"></i> ออกจากระบบ</a></li>
                         
                     </ul>
                 </li>
             <?php  } ?>
+
+            
+            
             
                 
                 

@@ -52,40 +52,40 @@ if(isset($_SESSION['id'])){
                             <div class="row">
                                 <label for="login" class="col-lg-3 col-form-label">ชื่อบัญชี:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="name" id="login" class="form-control" require>
+                                    <input type="text" name="name" id="login" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <label for="pwd" class="col-lg-3 col-form-label">รหัสผ่าน:</label>
                                 <div class="col-lg-9">
-                                    <input type="password" name="pass" id="pwd" class="form-control" require>
+                                    <input type="password" name="pass" id="pwd" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <label for="pw" class="col-lg-3 col-form-label">ใส่รหัสผ่านซ้ำ:</label>
                                 <div class="col-lg-9">
-                                    <input type="password" name="pass2" id="pw" onblur="OnBlurPWD()" class="form-control" require>
+                                    <input type="password" name="pass2" id="pw" onblur="OnBlurPWD()" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <label for="name" class="col-lg-3 col-form-label">ชื่อ-นามสกุล:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="fname-lname" id="name" class="form-control" require>
+                                    <input type="text" name="fname-lname" id="name" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <label class="col-lg-3 col-form-label">เพศ:</label>
                                 <div class="col-lg-9">
                                     <div class="form-check">
-                                        <input id="m" type="radio" name="gender" value="m" class="form-check-input" require>
+                                        <input id="m" type="radio" name="gender" value="m" class="form-check-input" required>
                                         <label for="m" class="form-check-label">ชาย</label>
                                     </div>
                                     <div class="form-check">
-                                        <input id="f" type="radio" name="gender" value="f" class="form-check-input" require>
+                                        <input id="f" type="radio" name="gender" value="f" class="form-check-input" required>
                                         <label for="f" class="form-check-label">หญิง</label>
                                     </div>
                                     <div class="form-check">
-                                        <input id="o" type="radio" name="gender" value="o" class="form-check-input" require>
+                                        <input id="o" type="radio" name="gender" value="o" class="form-check-input" required>
                                         <label for="o" class="form-check-label">อื่นๆ</label>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@ if(isset($_SESSION['id'])){
                             <div class="row mt-3">
                                 <label for="email" class="col-lg-3 col-form-label">อีเมล:</label>
                                 <div class="col-lg-9">
-                                    <input type="email" name="email" id="email" class="form-control" require>
+                                    <input type="email" name="email" id="email" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
