@@ -57,7 +57,7 @@ session_start();
                         <form action="category_save.php" method="post">
                             <div class="form-group">
                                 <label for="name">ชื่อหมวดหมู่:</label>
-                                <input id="name" name="name" type="text" class="form-control" required >
+                                <input id="name" name="name" type="text" class="form-control" required  >
                             </div>
                         </form>
                     </div>

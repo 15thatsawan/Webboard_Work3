@@ -16,9 +16,8 @@ session_start();
             return r;
         }
 
-        function edittxt(name){
-            var button = document.getElementById('button');
-            button.innerHTML=name;
+        function edittxt(){
+            return $_SESSION['cat_id']="success";
         }
     </script>
 </head>
@@ -32,16 +31,28 @@ session_start();
         <div>
             <label >หมวดหมู่ : </label>
             <span class="dropdown">
+                <?php
+                    $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+
+                ?>
                 <button id="button" class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                --ทั้งหมด--
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" onclick="edittxt('--ทั้งหมด-- ')">ทั้งหมด</a></li>
                     <?php
-                        $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                    if(isset($_GET['id'])){
+                        $sql="SELECT * FROM category WHERE id=$_GET[id]";
+                        foreach($conn->query($sql) as $row)
+                            echo "$row[name]";
+                        }else{
+                            echo "--ทั้งหมด-- ";
+                        }
+                    ?>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="Button2">
+
+                    <?php
                         $sql="SELECT * FROM category";
+                        echo "<li><a class=dropdown-item href=index.php> --ทั้งหมด-- </a></li>";
                         foreach($conn->query($sql) as $row){
-                            echo "<li><a class=dropdown-item href=# onclick=edittxt(\"" . htmlentities($row['name'], ENT_QUOTES) . "\")>$row[name]</a></li>";
+                            echo "<li><a class=dropdown-item href=index.php?id=$row[0] onclick=edittxt()>$row[name]</a></li>";
                         }
                         $conn=null;
                     ?>
@@ -57,18 +68,31 @@ session_start();
     <table class="table table-striped mt-4">
         <?php
             $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+            if(isset($_GET['id'])){
+                $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date,t2.id FROM post as t1
+            INNER JOIN user as t2 ON (t1.user_id=t2.id)
+            INNER JOIN category as t3 ON (t1.cat_id=t3.id) WHERE t1.cat_id=$_GET[id]
+            ORDER BY t1.post_date DESC";
+            }else{
             $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date,t2.id FROM post as t1
             INNER JOIN user as t2 ON (t1.user_id=t2.id)
             INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
+            }
             $result=$conn->query($sql);
             while($row = $result->fetch()){
                
                 echo "<tr><td class ='d-flex justify-content-between'><div>[ $row[0] ] <a href=post.php?id=$row[2]
                 style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</div>";
-                if(isset($_SESSION['id']) && $_SESSION['role']=='a'){
+                if(isset($_SESSION['id']) && $_SESSION['user_id']==$row[5]){
+                    echo "<div class='me-2 align-self-center'><a href=editpost.php?id=$row[2] class='btn btn-warning btn-sm' >
+                    <i class='bi bi-pencil-fill'></i></a> <a href=delete.php?id=$row[2] class='btn btn-danger btn-sm' onclick='return myFunction()'>
+                    <i class='bi bi-trash'></i></a></div>";
+                }
+                else if(isset($_SESSION['id']) && $_SESSION['role']=='a'){
                     echo "<div class='me-2 align-self-center'><a href=delete.php?id=$row[2] class='btn btn-danger btn-sm' onclick='return myFunction()'>
                     <i class='bi bi-trash'></i></a></div>";
                 }
+                
                 
                 echo "</td></tr>";
             }
